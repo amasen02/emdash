@@ -1,5 +1,45 @@
 # @emdash-cms/registry-verification
 
+## 0.3.0
+
+### Minor Changes
+
+- [#2746](https://github.com/emdash-cms/emdash/pull/2746) [`c7b6fdf`](https://github.com/emdash-cms/emdash/commit/c7b6fdfd1f5dd9a168f5d0f6bfa9b7b9ff343145) Thanks [@ascorbic](https://github.com/ascorbic)! - Adds optional artifact digest candidates to `GitHubProvenanceVerifier`, allowing callers that compute several supported digest algorithms in one isolated artifact fetch to verify the digest selected by a signed SLSA provenance subject.
+
+  Existing callers can continue passing only `artifactDigest`. Successful results return the candidate that matched the signed subject.
+
+  Fixes `@emdash-cms/registry-verification` when it is rebundled into an Astro Cloudflare application, preventing requests from failing during Worker startup.
+
+  Adds `@emdash-cms/registry-verification/records` for Worker callers that supply an explicit `ProvenanceVerifier`. The runtime-neutral entry does not load the Node-oriented default Sigstore verifier, while the package root keeps the existing default-verifier behavior.
+
+  Fixes `@emdash-cms/registry-verification` when it is rebundled into an Astro Cloudflare application, preventing requests from failing during Worker startup.
+
+- [#2746](https://github.com/emdash-cms/emdash/pull/2746) [`c7b6fdf`](https://github.com/emdash-cms/emdash/commit/c7b6fdfd1f5dd9a168f5d0f6bfa9b7b9ff343145) Thanks [@ascorbic](https://github.com/ascorbic)! - Adds `DirectPdsClient` for reading package profiles and releases with AT Protocol repository proofs, and updates experimental decentralized registry installs and updates to verify current signed records directly from the publisher's PDS.
+
+  #### Aggregator record integrity
+
+  Install and update reject aggregator-supplied profile or release metadata whose URI or CID does not match the publisher's signed records. The server returns `AGGREGATOR_RECORD_MISMATCH` before fetching the artifact or requesting consent.
+
+  #### Publisher identity display
+
+  The admin treats handle resolution as an advisory identity signal. It keeps the install button disabled while attempting to resolve the package DID back to a handle, then blocks installation when `resolveDidToHandle()` conclusively returns `"invalid"`. An indeterminate result caused by a network failure, unsupported DID method, or missing handle displays the publisher DID and does not block installation.
+
+  Install and update trust the publisher DID and the signed repository proofs for the profile and release records. A handle is display metadata and is not an authorization or record-integrity input.
+
+  #### Provenance and release policy
+
+  The installer applies the signed profile's release policy, independently fetches and verifies supplied Sigstore/SLSA provenance, and binds moderation labels to the exact profile or release CID. Missing required provenance and any supplied provenance that is unavailable, malformed, mismatched, or unsupported block installation and updates. Artifact checksums, archive paths, bundle limits, manifest identity, and version use the same verification rules as the registry release tooling.
+
+  The verification package also exports `inspectPackageReleaseRecords` for validating signed records and policy before artifact and provenance evidence is available.
+
+  Registry install and update consent now show the exact verified profile and release CIDs, signed publisher policy, and provenance status. Install consent uses permissions and MCP tools read from the verified bundle rather than the aggregator's record copy.
+
+  Install, update, and delegated-release verification require lowercase base32 multibase `sha2-256` multihashes for package artifacts and provenance documents. The plugin CLI already produces this format. The authenticated image-artifact proxy still accepts legacy bare hexadecimal SHA-256 checksums for display-only images.
+
+### Patch Changes
+
+- [#2847](https://github.com/emdash-cms/emdash/pull/2847) [`529b28b`](https://github.com/emdash-cms/emdash/commit/529b28bd1c0e4257eaa4436721b110beb09d5ba3) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes delegated-release provenance verification so verified GitHub attestations include the repository, workflow, commit, and run identity needed to enforce an exact authorized workload.
+
 ## 0.2.0
 
 ### Minor Changes

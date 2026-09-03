@@ -1,5 +1,15 @@
 # @emdash-cms/perf-demo-site
 
+## 0.0.40
+
+### Patch Changes
+
+- Updated dependencies [[`cd294dc`](https://github.com/emdash-cms/emdash/commit/cd294dc4fcbafa6fe6a33692d11b9f9abf1cc45c), [`3b124f2`](https://github.com/emdash-cms/emdash/commit/3b124f23126fead8884884b9f3d53e3be5d41bd3), [`920e1f3`](https://github.com/emdash-cms/emdash/commit/920e1f3fe6a7c7bf725c85e26f81e588e1201243), [`d99a0e8`](https://github.com/emdash-cms/emdash/commit/d99a0e835628edca896e304700746707e1bf56e7), [`b8873c7`](https://github.com/emdash-cms/emdash/commit/b8873c7bd1b1755010bcb46e4511eebccba2b48a), [`965bf33`](https://github.com/emdash-cms/emdash/commit/965bf3303bb71a2444c414585e29960606ae0cbb), [`bb8b087`](https://github.com/emdash-cms/emdash/commit/bb8b087c9a79c07336d2cdcadc6cec92428a2b4a), [`e0e60ba`](https://github.com/emdash-cms/emdash/commit/e0e60ba17b93d2022411afb8a3187c08e5142c18), [`c7b6fdf`](https://github.com/emdash-cms/emdash/commit/c7b6fdfd1f5dd9a168f5d0f6bfa9b7b9ff343145)]:
+  - emdash@0.37.0
+  - @emdash-cms/plugin-cli@0.10.0
+  - @emdash-cms/cloudflare@0.37.0
+  - @emdash-cms/plugin-webhook-notifier@0.2.0
+
 ## 0.0.39
 
 ### Patch Changes
