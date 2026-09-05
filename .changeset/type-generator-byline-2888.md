@@ -2,5 +2,5 @@
 "emdash": patch
 ---
 
-Fixes the type generator so generated collection interfaces include `byline?: BylineSummary | null` alongside `bylines`, matching runtime hydration by `getEmDashEntry` and `getEmDashCollection`.
+Generated `emdash-env.d.ts` files now include `entry.data.byline?: BylineSummary | null` alongside `bylines`, matching the byline data hydrated by `getEmDashEntry` and `getEmDashCollection` at runtime.
 
